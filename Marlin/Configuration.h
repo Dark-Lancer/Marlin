@@ -43,7 +43,7 @@
 // XY2 Thanks to Emmanuel Hayez!
 // #define XY2_V6_255_NO_TITAN_TMC 1
 // #define XY2_V6_255_TITAN_TMC 1
-// #define XY2_V6_255_BMG_TMC 1
+#define XY2_V6_255_BMG_TMC 1
 // #define XY2_V6_255M_BMG_TMC 1
 
 // #define XY2_V5_255_NO_TITAN_TMC 1
@@ -59,7 +59,7 @@
 
 // #define TFT_LVGL_UI
 // #define TFT_CLASSIC_UI
-// #define TFT_COLOR_UI
+#define TFT_COLOR_UI
 
 #if V6_330_TITAN_TMC
   #define MOTHERBOARD BOARD_CHITU3D_V6
@@ -831,8 +831,8 @@
 #define PID_K1 0.95      // Smoothing factor within any PID loop
 
 #if ENABLED(PIDTEMP)
-  //#define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
-  //#define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of PROGMEM)
+  #define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
+  #define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of PROGMEM)
   //#define PID_PARAMS_PER_HOTEND // Uses separate PID parameters for each extruder (useful for mismatched extruders)
                                   // Set/get with gcode: M301 E[extruder number, 0-2]
 
@@ -1171,7 +1171,7 @@
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
 #if WITH_TMC && WITH_BMG
-  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 830 }
+  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 800.6 }
 #elif WITH_TMC && WITH_TITAN
   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 764 }
 #elif WITH_TMC && !WITH_TITAN && !WITH_BMG
@@ -1505,7 +1505,7 @@
  * A total of 2 does fast/slow probes with a weighted average.
  * A total of 3 or more adds more slow probes, taking the average.
  */
-//#define MULTIPLE_PROBING 2
+#define MULTIPLE_PROBING 2
 //#define EXTRA_PROBING    1
 
 /**
@@ -1613,7 +1613,7 @@
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
 #if defined(WITH_TITAN) || defined(WITH_BMG) || MOTHERBOARD == BOARD_BTT_SKR_V1_4_TURBO
-  #define INVERT_E0_DIR true
+  #define INVERT_E0_DIR false
 #else
   #define INVERT_E0_DIR false
 #endif
@@ -2316,7 +2316,7 @@
  *
  * :{ 'en':'English', 'an':'Aragonese', 'bg':'Bulgarian', 'ca':'Catalan', 'cz':'Czech', 'da':'Danish', 'de':'German', 'el':'Greek', 'el_gr':'Greek (Greece)', 'es':'Spanish', 'eu':'Basque-Euskera', 'fi':'Finnish', 'fr':'French', 'gl':'Galician', 'hr':'Croatian', 'hu':'Hungarian', 'it':'Italian', 'jp_kana':'Japanese', 'ko_KR':'Korean (South Korea)', 'nl':'Dutch', 'pl':'Polish', 'pt':'Portuguese', 'pt_br':'Portuguese (Brazilian)', 'ro':'Romanian', 'ru':'Russian', 'sk':'Slovak', 'sv':'Swedish', 'tr':'Turkish', 'uk':'Ukrainian', 'vi':'Vietnamese', 'zh_CN':'Chinese (Simplified)', 'zh_TW':'Chinese (Traditional)' }
  */
-#define LCD_LANGUAGE en
+#define LCD_LANGUAGE de
 
 /**
  * LCD Character Set
