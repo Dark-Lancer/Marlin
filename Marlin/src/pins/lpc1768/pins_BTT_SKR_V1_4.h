@@ -21,19 +21,14 @@
  */
 #pragma once
 
+#include "env_validate.h"
+
 #ifndef BOARD_INFO_NAME
   #define BOARD_INFO_NAME "BTT SKR V1.4"
 #endif
 
 #ifndef BOARD_CUSTOM_BUILD_FLAGS
   #define BOARD_CUSTOM_BUILD_FLAGS -DLPC_PINCFG_UART3_P4_28
-#endif
-
-//
-// SD Connection
-//
-#ifndef SDCARD_CONNECTION
-  #define SDCARD_CONNECTION LCD
 #endif
 
 //
@@ -261,13 +256,6 @@
 #define EXP2_09_PIN                        P0_15
 #define EXP2_10_PIN                        P0_17
 
-//
-// SD Connection
-//
-#if SD_CONNECTION_IS(LCD)
-  #define SD_SS_PIN                  EXP2_07_PIN
-#endif
-
 /**
  *               _____                                             _____
  *           NC | · · | GND                                    5V | · · | GND
@@ -440,10 +428,6 @@
     #define LCD_PINS_D4              EXP1_06_PIN
 
     #define LCD_SDSS                 EXP2_07_PIN  // (16) J3-7 & AUX-4
-
-    #if SD_CONNECTION_IS(LCD)
-      #define SD_DETECT_PIN          EXP2_04_PIN  // (49) (NOT 5V tolerant)
-    #endif
 
     #if ENABLED(FYSETC_MINI_12864)
       #define DOGLCD_CS              EXP1_08_PIN

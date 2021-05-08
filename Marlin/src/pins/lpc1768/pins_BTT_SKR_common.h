@@ -21,13 +21,7 @@
  */
 #pragma once
 
-#if ENABLED(SKR_HAS_LPC1769)
-  #if NOT_TARGET(MCU_LPC1769)
-    #error "Oops! Make sure you have the LPC1769 environment selected in your IDE."
-  #endif
-#elif NOT_TARGET(MCU_LPC1768)
-  #error "Oops! Make sure you have the LPC1768 environment selected in your IDE."
-#endif
+#include "env_validate.h"
 
 // If you have the Big tree tech driver expansion module, enable HAS_BTT_EXP_MOT
 // https://github.com/bigtreetech/BTT-Expansion-module/tree/master/BTT%20EXP-MOT
@@ -111,12 +105,28 @@
 //
 // SD Support
 //
+#ifndef SDCARD_CONNECTION
+  #if HAS_WIRED_LCD
+    #define SDCARD_CONNECTION                LCD
+  #else
+    #define SDCARD_CONNECTION            ONBOARD
+  #endif
+#endif
+
+
 #define ONBOARD_SD_CS_PIN                  P0_06  // Chip select for "System" SD card
+
+#if SD_CONNECTION_IS(LCD) && ENABLED(SKR_USE_LCD_SD_CARD_PINS_FOR_CS)
+  #error "SDCARD_CONNECTION must not be 'LCD' with SKR_USE_LCD_PINS_FOR_CS."
+#endif
 
 #if SD_CONNECTION_IS(LCD)
   #define SD_SCK_PIN                       P0_15
   #define SD_MISO_PIN                      P0_17
   #define SD_MOSI_PIN                      P0_18
+  #define SD_SS_PIN                  EXP2_07_PIN
+  #define SD_DETECT_PIN              EXP2_04_PIN
+
 #elif SD_CONNECTION_IS(ONBOARD)
   #undef SD_DETECT_PIN
   #define SD_DETECT_PIN                    P0_27
