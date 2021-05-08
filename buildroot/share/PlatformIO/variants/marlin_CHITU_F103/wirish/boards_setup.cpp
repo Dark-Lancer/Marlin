@@ -100,7 +100,7 @@ namespace wirish {
              * This hack only works if applied *before* the GPIO Init, it's the reason I did it here.
              */
             #ifdef CHITU_V5_Z_MIN_BUGFIX
-              GPIOA->regs->BSRR = (1U << PA14);
+              GPIOA->regs->BSRR = (1U << PG9);
             #endif
             gpio_init_all();
         }
