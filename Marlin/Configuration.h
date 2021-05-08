@@ -235,7 +235,7 @@
   #define XY2_MODELS 1
   #define X_BED_SIZE 255
   #define Y_BED_SIZE 255
-  #define Z_MAX_POS 260
+  #define Z_MAX_POS 230
   #define CUSTOM_MACHINE_NAME "Tronxy XY-2PRO"
 
 #elif XY2_V6_255M_BMG_TMC
@@ -1813,12 +1813,12 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-//#if WITHOUT_ABL
-//  #define MESH_BED_LEVELING
-//#else
-//  #define AUTO_BED_LEVELING_BILINEAR
-//#endif
-#define AUTO_BED_LEVELING_UBL
+#if WITHOUT_ABL
+  #define MESH_BED_LEVELING
+#else
+  #define AUTO_BED_LEVELING_BILINEAR
+#endif
+//#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
 
 /**
@@ -2141,7 +2141,7 @@
 //
 #define PREHEAT_1_LABEL       "PLA"
 #define PREHEAT_1_TEMP_HOTEND 180
-#define PREHEAT_1_TEMP_BED     60
+#define PREHEAT_1_TEMP_BED     55
 #define PREHEAT_1_TEMP_CHAMBER 35
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
